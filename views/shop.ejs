@@ -1,0 +1,90 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <!-- Latest compiled and minified Bootstrap 5 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+        <link rel="stylesheet" href="/css/main.css" />
+
+        <title>Shop Page</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+                <%- include('partials/navbar', {page: '/about'}) %>
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <div class="container" style="padding-top: 90px;">
+            <div class="row">
+                <section class="main col-md-9">
+                    <item>
+                        <div class="row">
+                            <div class="col-4">
+                                <h2><%= data.item.title %></h2>
+                                <img
+                                    src="<%= data.item.featureImage %>"
+                                    alt="feature Image"
+                                    style="width:100%"
+                                />
+
+                            </div>
+
+                            <div class="col-8"><br />
+                                <br />
+                                <div class="row">
+                                    <div class="col-12">
+                                        <%= data.item.body %>
+                                        <br /><br />
+                                        <strong>Price:</strong>
+                                        <!-- $ 00.00<br /> -->
+                                        $ <%= data.item.price %> <br />
+                                        <strong>Category:</strong>
+                                        <!-- 3<br /> -->
+                                        <%= data.item.category %> <br />
+                                        <strong>Last Updated:</strong>
+                                        <!-- 03/17/2023 -->
+                                        <%= data.item.postDate %> <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </item>
+                </section>
+
+                <aside class="col-md-3">
+                    <br /><br />
+                    <h4>Items</h4>
+
+                    <ul class="list-group">
+                    <!--
+                    <a href="#" class="list-group-item">Item 1</a>
+                    <a href="#" class="list-group-item">Item 2</a>
+                    <a href="#" class="list-group-item">etc...</a>
+                    -->
+                        <% data.items.forEach(item => { %>
+                            <a href="/shop/<%= item.id %>" class="list-group-item"><%= item.title %></a>
+                        <% }) %>
+                    </ul>
+
+                    <h4>Categories</h4>
+
+                    <ul class="list-group">
+                    <!--
+                    <a href="#" class="list-group-item">Category 1</a>
+                    <a href="#" class="list-group-item">Category 2</a>
+                    <a href="#" class="list-group-item">etc...</a>
+                    -->
+                        <% data.categories.forEach(category => { %>
+                            <a href="/shop?category=<%= category.id %>" class="list-group-item"><%= category.category %></a>
+                        <% }) %>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+
+        <!-- Latest compiled and minified Bootstrap 5 JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    </body>
+</html>
