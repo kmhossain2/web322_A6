@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">WEB322 - Kazi Meherab Hossain</a>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link <%= activeRoute === '/shop' ? 'active' : ''%>" href="/shop">Shop</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link <%= activeRoute === '/about' ? 'active' : ''%>" href="/about">About</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link <%= activeRoute === '/items' ? 'active' : ''%>" href="/items">Items</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%= activeRoute === '/categories' ? 'active' : ''%>" href="/categories">Categories</a>
+            </li>
+        </ul>
+        <% if (session.user) { %>
+            <!-- User is logged in -->
+            <form class="navbar-form navbar-right">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<%= session.user.userName %>&nbsp;&nbsp;<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="userMenu">
+                        <li><a class="dropdown-item" href="/userHistory">User History</a></li>
+                        <li><a class="dropdown-item" href="/logout">Log Out</a></li>
+                    </ul>
+                </div>
+            </form>
+        <% } else { %>
+            <!-- User is not logged in -->
+            <form class="navbar-form navbar-right">
+                <a href="/register" class="btn btn-success">
+                    <span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Register
+                </a>
+                <a href="/login" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Log In
+                </a>
+            </form>
+        <% } %>
+    </div>
+    <!-- /.navbar-collapse -->
+</div>
+<!-- /.container-fluid -->
